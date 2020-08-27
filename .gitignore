@@ -1,4 +1,4 @@
 dj-sigma
-requirements.txt
 runtime.txt
+staticfiles
 *.pyc
