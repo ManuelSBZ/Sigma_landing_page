@@ -4,7 +4,7 @@ El presente repositorio anexa la solución a el desafio propuesto por Sigma.
 
 Para explorar la solucion en producción ingresar al siguiente link : https://manuelsemecodjsigma.herokuapp.com/signup/
 
-Para ingresar al admin : https://manuelsemecodjsigma.herokuapp.com/admin
+Para ingresar al admin : https://manuelsemecodjsigma.herokuapp.com/admin (USUARIO: admin , CONTRASEÑA: admin)
 
 Caracteristicas formulario: 
 
