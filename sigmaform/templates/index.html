@@ -137,7 +137,6 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
     <script>
-        console.log(1)
         $(document).ready(function () {
             //PETICIONES ASINCRONAS
 
@@ -145,7 +144,6 @@
             $("#tag_department").change(function () {
                 const url = $("#SignForm").attr("data-cities-url");
                 const TagDep = $(this).val();
-                console.log("ajax city")
                 $.ajax({
                     url: url,
                     data: {
