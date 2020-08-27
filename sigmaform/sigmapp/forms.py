@@ -41,8 +41,8 @@ class SignForm(forms.Form):
 
         if "department" in self.data:
             try:
-            # rebuilding form definition to be able to pass validation when
-            # using ajax with form
+            # reconstruyendo definicion de formulario para que sea correctamente
+            # validado.
                 choices = list(
                     zip(k[self.data["department"]],k[self.data["department"]])
                     )

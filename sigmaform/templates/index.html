@@ -5,11 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sigma Corp</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
+    <!-- añadiendo recursos estaticos externos a la aplicacion para despliegue en foundry-->
     <link rel="stylesheet" href="https://staticfiles-p2000687839trial.dispatcher.hanatrial.ondemand.com/css/main.css"
         rel="stylesheet">
 
@@ -111,17 +111,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-danger text-white bold-roboto">
-                    <h5 class="modal-title" id="exampleModalLabel">Resgistration Succesfull</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tu informacion ha sido recibida correctamente</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body bold-roboto">
-                    Thank you for join us !!
+                    Te responderemos en la brevedad
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger text-white bold-roboto"
-                        data-dismiss="modal">Close</button>
+                        data-dismiss="modal">Ok</button>
                 </div>
             </div>
         </div>
@@ -141,7 +141,7 @@
         $(document).ready(function () {
             //PETICIONES ASINCRONAS
 
-            //pide las ciudades correspodientes a el departament para el form
+            //pide las ciudades correspodientes a el departamento para el form
             $("#tag_department").change(function () {
                 const url = $("#SignForm").attr("data-cities-url");
                 const TagDep = $(this).val();
