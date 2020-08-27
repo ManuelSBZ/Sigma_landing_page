@@ -6,13 +6,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-        crossorigin="anonymous">
-        <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap"
-          rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://staticfiles-p2000687839trial.dispatcher.hanatrial.ondemand.com/css/main.css"
+        rel="stylesheet">
+
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -20,7 +23,9 @@
         <header id="logo" class="container-fluid pt-5">
             <div class="row justify-content-center mb-3">
                 <div class="col-4 d-flex justify-content-center">
-                    <img class="image-fluid image-little" src="{% static 'images\sigma-logo.png' %}">                </div>
+                    <img class="image-fluid image-little"
+                        src="https://staticfiles-p2000687839trial.dispatcher.hanatrial.ondemand.com/images/sigma-logo.png">
+                </div>
             </div>
             <div class="row">
                 <div class="col d-flex justify-content-center">
@@ -44,11 +49,11 @@
                 <div id="image-body"
                     class="col d-flex justify-content-center justify-content-lg-end align-items-center">
                     <img class="float-right"
-                        src="{% static 'images\sigma-image.png' %}">
+                        src="https://staticfiles-p2000687839trial.dispatcher.hanatrial.ondemand.com/images/sigma-image.png">
                 </div>
                 <div id="form" class="col d-flex justify-content-center justify-content-lg-start pl-lg-0 pt-1 pt-lg-1">
                     <form class="bg-white shadow rounded-large p-5 bold-roboto" action={% url "signup" %} method="POST"
-                        id="SignForm">
+                        id="SignForm" data-cities-url={% url "ajax_load_cities" %}>
                         <div class="form-row errors">
 
                         </div>
@@ -101,17 +106,86 @@
         </div>
     </div>
 
+    <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white bold-roboto">
+                    <h5 class="modal-title" id="exampleModalLabel">Resgistration Succesfull</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body bold-roboto">
+                    Thank you for join us !!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger text-white bold-roboto"
+                        data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
+    <script>
+        console.log(1)
+        $(document).ready(function () {
+            //PETICIONES ASINCRONAS
+
+            //pide las ciudades correspodientes a el departament para el form
+            $("#tag_department").change(function () {
+                const url = $("#SignForm").attr("data-cities-url");
+                const TagDep = $(this).val();
+                console.log("ajax city")
+                $.ajax({
+                    url: url,
+                    data: {
+                        'tag_department': TagDep                       },
+                    success: function (data) {
+                        $("#tag_city").html(data);
+
+                    }
+                });
+
+            })
+            //pide y muestra validaciones del back para con el form
+            $('#SignForm').on('submit', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: $("#SignForm").attr("action"),
+                    type: "POST",
+                    data: $("#SignForm").serialize(),
+                    success: function (data) {
+                        if (data == "OK") {
+                            $(".message").remove()
+                            $("#exampleModal").modal("show");
+                            document.getElementById("SignForm").reset()
+                        }
+                        else {
+                            if ($(".message").length > 0) {
+                                $(".message").remove()
+                            }
+                            $(".errors").prepend(data)
+                        }
+
+                    },
+                    error: function (data) {
+                        // pass
+                    }
+                });
+
+            });
+        })
+    </script>
 </body>
 
 </html>

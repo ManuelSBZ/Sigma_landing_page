@@ -18,6 +18,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('signup/', views.person_create_view, name='signup'),
+    path('signup/ajax/load-cities/', views.load_cities, name='ajax_load_cities'), # AJAX
 ]
