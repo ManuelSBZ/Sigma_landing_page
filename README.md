@@ -18,5 +18,5 @@ Caracteristicas del administrador:
 (DEBE ESTAR AUTENTICADO): https://manuelsemecodjsigma.herokuapp.com/admin/sigmapp/singin/
 
 PD: el recurso colombia.json en https://sigma-studios.s3-us-west-2.amazonaws.com/test/colombia.json
-presenta un formato ilegible para ser tratado como json. Por ej: Atlantico no prensenta commillas dobles,
+presenta un formato ilegible para ser tratado como json. Por ej: Atlantico no prensenta comillas dobles,
 por consiguiente se usa un recurso auxliar helper.py para proveer los departamentos y ciudades.
