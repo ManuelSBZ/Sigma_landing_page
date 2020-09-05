@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+    web:
+        container_name: sigmaserver
+        build: sigmaform/
+        command: gunicorn sigmaform.wsgi:application --bind 0.0.0.0:8000 --workers=4
+        expose:
+        - 8000
+        volumes:
+        - staticfiles:/home/app/web/staticfiles
+        - ./sigmaform/backup_sqlite/db.sqlite3:/home/app/web/sigmaform/db.sqlite3
+    nginx:
+        container_name: nginx
+        image: nginx:mainline-alpine
+        restart: always
+        ports:
+        - 1337:80
+        volumes:
+        - ./nginx:/etc/nginx/conf.d
+        - staticfiles:/home/app/web/staticfiles/
+        depends_on:
+        - web
+
+volumes:
+  staticfiles:
