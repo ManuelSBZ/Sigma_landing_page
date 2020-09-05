@@ -16,7 +16,7 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 COPY . $APP_HOME
-
+RUN chmod +x entrypoint.sh
 RUN chown -R app:app $APP_HOME
 
 USER app:app
