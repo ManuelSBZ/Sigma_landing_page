@@ -2,11 +2,13 @@
 
 El presente repositorio anexa la solución a el desafio propuesto por Sigma.
 
-Para explorar la solucion en producción ingresar al siguiente link : https://manuelsemecodjsigma.herokuapp.com/signup/
+- Para explorar la solucion en producción ingresar al siguiente link : https://manuelsemecodjsigma.herokuapp.com/signup/
+- Tambien cuenta con los archivos necesarios y ser containerizado, solo usando el comando "docker-compose up --build"
+en la carpeta que contiene el docker-compose.yaml.
 
 Recurso admin : https://manuelsemecodjsigma.herokuapp.com/admin (USUARIO: admin , CONTRASEÑA: admin)
 
-Caracteristicas formulario: 
+Caracteristicas formulario:
 
 - Selección encadenada Departamento --> Ciudad.
 - Realizacion de peticiones asincronas para validacion de campos(mejor experiencia de usuario).
